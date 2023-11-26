@@ -215,21 +215,7 @@ uninstallXUI() {
 }
 
 setupWARP() {
-  # Check if the x-ui parameter is provided as an argument
-  cmd=x-ui
-  if [ "$cmd" == "x-ui" ]; then
-    # If x-ui is provided, wait for 1 second and then output 18
-    x-ui
-    sleep 1
-    echo "18"
-
-    # Wait for another 1 second and then output 1
-    sleep 1
-    echo "1"
-  else
-    # If x-ui is not provided, print a message
-    echo "x-ui not provided"
-  fi
+(echo 18; echo 1;) | cat | x-ui
 }
 
 
@@ -297,9 +283,9 @@ display_header() {
 ║         ###########  #####            ║   4. Install SSL          ║
 ║              ##########               ║   5. Setup Cronjob        ║
 ║                ##########             ║   6. Setup SSL            ║
-║              ##### ########           ║   7. Uninstall X-UI       ║
-║          #######     ########         ║   8. Exit                 ║
-║       #######           #######       ║                           ║
+║              ##### ########           ║   7. Setup WARP           ║
+║          #######     ########         ║   8. Uninstall X-UI       ║
+║       #######           #######       ║   9. Exit                 ║
 ║   ########                ### ####    ║                           ║
 ║  *######                    ### ##    ║                           ║
 ║   ###                         #       ║                           ║
@@ -314,7 +300,7 @@ while true; do
     clear  # Clear the screen for a clean display
     display_header
 
-    read -p "Enter your choice (1-8): " choice
+    read -p "Enter your choice (1-9): " choice
 
     case $choice in
         1)
