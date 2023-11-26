@@ -222,7 +222,7 @@ setupWARP() {
     x-ui
     sleep 1
     echo "18"
-  
+
     # Wait for another 1 second and then output 1
     sleep 1
     echo "1"
@@ -350,10 +350,15 @@ while true; do
             read -p "Press enter to continue..."
             ;;
         7)
+            type_effect "Setting WARP"
+            setupWARP
+            read -p "Press enter to continue..."
+            ;;
+        8)
             type_effect "[Info] Running x-ui uninstallation ..."
             uninstallXUI
             ;;
-        8)
+        9)
             type_effect "Exiting the script. Goodbye!"
             exit 0
             ;;
