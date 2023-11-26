@@ -214,6 +214,24 @@ uninstallXUI() {
 
 }
 
+setupWARP() {
+  # Check if the x-ui parameter is provided as an argument
+  cmd=x-ui
+  if [ "$cmd" == "x-ui" ]; then
+    # If x-ui is provided, wait for 1 second and then output 18
+    x-ui
+    sleep 1
+    echo "18"
+  
+    # Wait for another 1 second and then output 1
+    sleep 1
+    echo "1"
+  else
+    # If x-ui is not provided, print a message
+    echo "x-ui not provided"
+  fi
+}
+
 
 # Function to install requirements
 install_requirements() {
