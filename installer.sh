@@ -243,10 +243,10 @@ setupCronjob() {
 
 
   new_cron_line="15 18 * * * /usr/bin/certbot renew --dry-run --post-hook 'systemctl restart x-ui.service'"
-  
-  
+
+
   choice=1
-  
+
   if [ "$choice" -eq 1 ]; then
     # Append the code to the crontab file
     (crontab -l ; echo "$new_cron_line") | crontab -
@@ -296,7 +296,7 @@ while true; do
     clear  # Clear the screen for a clean display
     display_header
 
-    read -p "Enter your choice (1-5): " choice
+    read -p "Enter your choice (1-8): " choice
 
     case $choice in
         1)
