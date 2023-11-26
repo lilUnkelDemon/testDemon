@@ -237,11 +237,23 @@ install_requirements() {
 setupCronjob() {
   echo -e "\e[1;32m[Success] Starting Configuring Cronjob...\e[0m"
 
-#  crontab -e
+
+#  echo "15 18 * * * /usr/bin/certbot renew --dry-run --post-hook 'systemctl restart x-ui.service'" | sudo tee -a /etc/crontab
 
 
-  echo "15 18 * * * /usr/bin/certbot renew --dry-run --post-hook 'systemctl restart x-ui.service'" | sudo tee -a /etc/crontab
 
+  new_cron_line="15 18 * * * /usr/bin/certbot renew --dry-run --post-hook 'systemctl restart x-ui.service'"
+  
+  
+  choice=1
+  
+  if [ "$choice" -eq 1 ]; then
+    # Append the code to the crontab file
+    (crontab -l ; echo "$new_cron_line") | crontab -
+    echo "Code added to crontab successfully!"
+  else
+    echo "No changes made to crontab."
+  fi
   echo -e "\e[1;32m[Success] Cronjob was configured successfully!\e[0m"
 
 }
@@ -312,16 +324,16 @@ while true; do
         5)
             type_effect "[Info] Running Cronjob  ..."
             setupCronjob
+            read -p "Press enter to continue..."
             ;;
         6)
             type_effect "Setting SSL on x-ui panel"
             setupSSL
-            exit 0
+            read -p "Press enter to continue..."
             ;;
         7)
             type_effect "[Info] Running x-ui uninstallation ..."
             uninstallXUI
-            exit 0
             ;;
         8)
             type_effect "Exiting the script. Goodbye!"
